@@ -1,25 +1,39 @@
 import Image from "next/image";
 import { Search } from "lucide-react";
-import AvatarStack from "@/components/ui/AvatarStack";
 import { Button } from "@/components/ui/Button";
-import { Cone, Cylinder, Ring, Squiggle } from "@/components/ui/Shapes";
+import { HappyStudentsCard, ProgressCard, TopicCard } from "@/components/ui/InfoCards";
+import { Ornament, Place, Stage } from "@/components/ui/Stage";
+
+// Coordinates below are taken from the Figma "Hero_Frame" (1440 x 1024).
+const FRAME = { width: 1440, height: 1024 };
+const ART = { width: 1149, height: 512 }; // ring + student + floating cards
+
+const ornaments = [
+  { src: "hero-squiggle-lime", x: -118, y: 221, size: 385 },
+  { src: "hero-cylinder-lime", x: 1231, y: 221, size: 370 },
+  { src: "hero-squiggle-white-sm", x: 183, y: 477, size: 175 },
+  { src: "hero-pyramid-white", x: 1106, y: 464, size: 188 },
+  { src: "hero-ring-white", x: 18, y: 682, size: 342 },
+  { src: "hero-squiggle-white", x: 1127, y: 672, size: 330 },
+];
 
 export default function Hero() {
   return (
-    <section className="relative w-full overflow-hidden bg-brand bg-grid text-white">
-      {/* Decorative shapes */}
-      <Squiggle className="absolute top-40 -left-6 hidden w-36 -rotate-12 md:block lg:w-48" />
-      <Cylinder className="absolute top-36 -right-4 hidden w-28 rotate-[25deg] md:block lg:w-36" />
-      <Squiggle color="white" className="absolute top-[26rem] left-[14%] hidden w-16 rotate-12 lg:block" />
-      <Cone className="absolute top-[24rem] right-[18%] hidden w-16 rotate-12 lg:block" />
-      <Ring className="absolute bottom-10 left-[4%] hidden w-28 md:block lg:w-36" />
-      <Squiggle color="white" className="absolute right-[6%] bottom-16 hidden w-20 -rotate-12 md:block" />
+    <section className="relative isolate w-full overflow-hidden bg-brand bg-grid text-surface">
+      <Stage
+        size={FRAME}
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden md:block"
+      >
+        {ornaments.map((o) => (
+          <Ornament key={o.src} stage={FRAME} {...o} src={`/images/shapes/${o.src}.webp`} />
+        ))}
+      </Stage>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pt-36 text-center md:pt-40">
-        <h1 className="max-w-3xl text-4xl leading-tight font-semibold sm:text-5xl md:text-6xl">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center px-4 pt-32 text-center md:pt-[169px]">
+        <h1 className="max-w-[935px] text-[40px] leading-[1.2] font-semibold tracking-[-0.01em] sm:text-6xl md:text-[72px]">
           Get Access to Hundreds Courses Available
         </h1>
-        <p className="mt-5 max-w-xl text-sm text-white/80 md:text-base">
+        <p className="mt-8 max-w-[935px] text-base leading-[1.6] text-[#e5e6e8] md:text-lg">
           Unlock your creativity, gain valuable knowledge, and grow your business with our wide
           range of courses.
         </p>
@@ -27,55 +41,61 @@ export default function Hero() {
         <form
           action="/#courses"
           role="search"
-          className="mt-8 flex w-full max-w-md items-center gap-2"
+          className="mt-[60px] flex w-full max-w-[581px] gap-4"
         >
-          <label className="flex flex-1 items-center gap-2 rounded-full bg-white px-4 py-2.5 text-ink">
-            <Search className="h-4 w-4 shrink-0 text-muted" aria-hidden="true" />
+          <label className="flex h-[52px] flex-1 items-center gap-2 rounded-full bg-white px-6 text-ink">
+            <Search className="h-6 w-6 shrink-0 text-muted" aria-hidden="true" />
             <span className="sr-only">Search courses</span>
             <input
               type="search"
               name="q"
               placeholder="Course, topic, creator"
-              className="w-full bg-transparent text-sm outline-none placeholder:text-muted"
+              className="w-full min-w-0 bg-transparent text-lg outline-none placeholder:text-muted"
             />
           </label>
-          <Button type="submit">Search</Button>
+          <Button type="submit" className="h-[52px]">
+            Search
+          </Button>
         </form>
+      </div>
 
-        {/* Illustration */}
-        <div className="relative mt-12 h-[340px] w-full max-w-3xl sm:h-[420px]">
-          <div className="absolute bottom-0 left-1/2 aspect-square w-[640px] max-w-[150%] -translate-x-1/2 translate-y-1/2 rounded-full bg-lime" />
-
-          <div className="absolute bottom-0 left-1/2 h-full w-60 -translate-x-1/2 overflow-hidden rounded-t-full sm:w-72">
+      {/* Illustration: scales proportionally; kept legible on phones by a min width. */}
+      <div className="relative mx-auto mt-10 w-full max-w-[1149px] md:mt-0">
+        <Stage size={ART} className="relative left-1/2 w-full min-w-[620px] -translate-x-1/2">
+          <div
+            aria-hidden="true"
+            className="absolute top-[13.7%] left-0 aspect-square w-full rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle closest-side, transparent 44.3%, var(--color-lime-bright) 44.3%)",
+            }}
+          />
+          {/* Export includes the drop shadow: 21px left / 3px top padding around the 578x541 photo */}
+          <Place stage={ART} x={265} y={-3} w={722} h={689}>
             <Image
-              src="/images/hero-student.jpg"
-              alt="Smiling student ready to learn"
+              src="/images/student.webp"
+              alt="Smiling student with headphones holding a laptop"
               fill
               preload
-              sizes="(min-width: 640px) 288px, 240px"
-              className="object-cover object-top"
+              sizes="(min-width: 1149px) 722px, 60vw"
+              className="object-contain object-bottom"
             />
-          </div>
-
-          <div className="animate-float absolute top-8 left-0 rounded-xl bg-white px-4 py-3 text-left text-ink shadow-xl sm:left-6">
-            <p className="text-sm font-semibold">UI/UX Design</p>
-            <p className="mt-0.5 text-[11px] text-muted">200 Courses • 1000+ Students</p>
-          </div>
-
-          <div className="animate-float absolute top-16 right-0 w-36 rounded-xl bg-white p-3 text-left text-ink shadow-xl [animation-delay:1.5s] sm:right-6 sm:w-44">
-            <p className="text-[11px] font-medium">Learning Progress</p>
-            <p className="mt-1 font-heading text-3xl font-semibold">55%</p>
-            <div className="mt-2 h-1.5 rounded-full bg-gray-100">
-              <div className="h-full w-[55%] rounded-full bg-lime" />
-            </div>
-          </div>
-
-          <div className="animate-float absolute bottom-10 left-0 hidden rounded-xl bg-white p-3 text-left text-ink shadow-xl [animation-delay:3s] sm:left-10 sm:block">
-            <p className="text-sm font-semibold">Happy Students</p>
-            <p className="mb-2 text-[11px] text-muted">4.8 ★★★★★</p>
-            <AvatarStack count={5} extra="2K+" size="md" />
-          </div>
-        </div>
+          </Place>
+          <Place stage={ART} x={259} y={127} className="animate-float max-sm:hidden">
+            <TopicCard />
+          </Place>
+          <Place stage={ART} x={697} y={139} className="animate-float [animation-delay:1.5s]">
+            <ProgressCard />
+          </Place>
+          <Place
+            stage={ART}
+            x={183}
+            y={325}
+            className="animate-float [animation-delay:3s] max-sm:hidden"
+          >
+            <HappyStudentsCard />
+          </Place>
+        </Stage>
       </div>
     </section>
   );

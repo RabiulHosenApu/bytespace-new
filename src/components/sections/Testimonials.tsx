@@ -4,16 +4,16 @@ import { testimonials } from "@/lib/data";
 
 export default function Testimonials() {
   return (
-    <section className="relative isolate w-full overflow-hidden px-4 py-24">
+    <section className="relative isolate w-full overflow-hidden px-4 py-[74px]">
       <GlowBackdrop />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-2">
-        <h2 className="text-3xl leading-tight font-semibold md:text-[2.75rem]">
+      <div className="mx-auto grid max-w-[1204px] items-end gap-8 md:grid-cols-2 lg:grid-cols-[577px_580px] lg:justify-between">
+        <h2 className="text-3xl leading-[1.2] font-semibold text-black md:text-[44px]">
           Discover What Our
           <br />
           Community Is Saying
         </h2>
-        <p className="text-sm leading-relaxed text-muted md:text-base">
+        <p className="text-base leading-[1.6] text-[#4f4f4f] md:text-lg">
           At ByteSpace, our vibrant community of learners and creators is at the heart of what we
           do. Hear directly from those who have experienced the transformative journey of learning
           and creating on our platform. Explore testimonials that reflect the diverse perspectives
@@ -21,23 +21,25 @@ export default function Testimonials() {
         </p>
       </div>
 
-      <ul className="relative mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
+      <ul className="mx-auto mt-[72px] grid max-w-[1204px] items-start gap-10 lg:gap-[41px] md:grid-cols-3">
         {testimonials.map((t) => (
           <li key={t.name}>
-            <figure className="h-full rounded-2xl bg-white p-7 shadow-sm transition hover:shadow-lg">
+            <figure className="rounded-3xl bg-white p-6">
               <figcaption>
                 <Image
                   src={t.avatar}
                   alt=""
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 rounded-full object-cover"
+                  width={80}
+                  height={80}
+                  className="h-20 w-20 rounded-full object-cover"
                 />
-                <p className="mt-4 font-heading font-semibold">{t.name}</p>
-                <p className="text-sm text-brand">{t.role}</p>
+                <p className="mt-6 font-heading text-xl leading-[1.2] font-semibold text-black">
+                  {t.name}
+                </p>
+                <p className="text-lg leading-[1.6] text-brand">{t.role}</p>
               </figcaption>
-              <blockquote className="mt-5 text-sm leading-relaxed text-ink/80">
-                &ldquo;{t.quote}&rdquo;
+              <blockquote className="mt-6 text-lg leading-[1.6] text-[#4f4f4f]">
+                &quot;{t.quote}&quot;
               </blockquote>
             </figure>
           </li>

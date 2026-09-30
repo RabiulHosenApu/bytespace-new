@@ -6,11 +6,11 @@ type Variant = "lime" | "brand" | "outline";
 const variants: Record<Variant, string> = {
   lime: "bg-lime text-ink hover:bg-lime-dark",
   brand: "bg-brand text-white hover:bg-brand-dark",
-  outline: "border border-gray-200 bg-white text-ink hover:bg-gray-50",
+  outline: "border border-line bg-white text-ink hover:bg-surface",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60";
+  "inline-flex h-[46px] shrink-0 items-center justify-center gap-2 rounded-full px-6 text-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60";
 
 type ButtonProps = ComponentProps<"button"> & { variant?: Variant };
 

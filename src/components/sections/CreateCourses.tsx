@@ -1,72 +1,74 @@
 import Image from "next/image";
-import { CheckCircle2 } from "lucide-react";
-import AvatarStack from "@/components/ui/AvatarStack";
-import { Squiggle } from "@/components/ui/Shapes";
+import { CircleCheck } from "lucide-react";
+import { HappyStudentsCard, RevenueCard } from "@/components/ui/InfoCards";
+import { Ornament, Place, Stage } from "@/components/ui/Stage";
 import { creatorBenefits } from "@/lib/data";
+
+// Figma "Frame 12" (541 x 596)
+const ART = { width: 541, height: 596 };
 
 export default function CreateCourses() {
   return (
-    <section
+    <div
       id="creators"
-      className="mx-auto grid max-w-6xl scroll-mt-8 items-center gap-16 px-4 py-24 lg:grid-cols-2"
+      className="mx-auto grid w-full max-w-[1200px] scroll-mt-8 items-center gap-12 lg:grid-cols-[541px_1fr] lg:gap-[79px]"
     >
-      <div className="relative mx-auto h-[440px] w-full max-w-md">
-        <div className="absolute top-0 left-1/2 h-full w-64 -translate-x-1/2 overflow-hidden rounded-[2rem] shadow-2xl sm:w-72">
-          <Image
-            src="/images/creator-woman.jpg"
-            alt="Course creator smiling"
-            fill
-            sizes="288px"
-            className="object-cover"
+      <Stage size={ART} className="relative order-2 mx-auto w-full max-w-[541px] lg:order-1">
+        <Place stage={ART} x={0} y={44} w={232}>
+          <RevenueCard
+            title="Total Revenue"
+            period="July 1-28"
+            amount="$120.29"
+            variant="progress"
           />
-        </div>
+        </Place>
+        <Place stage={ART} x={0} y={194} w={134}>
+          <RevenueCard title="Year to Date" period="2023" amount="$1,200.38" variant="badge" />
+        </Place>
+        {/* Export includes the drop shadow around the 435x596 photo */}
+        <Place stage={ART} x={7} y={-3} w={579} h={744}>
+          <Image
+            src="/images/creator.webp"
+            alt="Course creator with headphones holding a tablet"
+            fill
+            sizes="(min-width: 1024px) 579px, 100vw"
+            className="object-contain"
+          />
+        </Place>
+        <Place stage={ART} x={283} y={413} className="animate-float">
+          <HappyStudentsCard />
+        </Place>
+        <Ornament
+          stage={ART}
+          src="/images/shapes/create-squiggle-lime.webp"
+          x={305}
+          y={114}
+          size={215}
+        />
+      </Stage>
 
-        <Squiggle className="absolute top-16 right-2 w-24 -rotate-6 sm:right-6" />
-
-        <div className="absolute top-8 left-0 w-40 rounded-xl bg-brand p-3 text-white shadow-xl">
-          <p className="text-xs text-white/80">Total Revenue</p>
-          <p className="text-[10px] text-white/60">July 1–31</p>
-          <p className="mt-1 font-heading text-xl font-semibold">$120.29</p>
-          <div className="mt-2 h-1 rounded-full bg-white/20">
-            <div className="h-full w-2/3 rounded-full bg-lime" />
-          </div>
-        </div>
-
-        <div className="absolute top-36 left-0 w-40 rounded-xl bg-brand p-3 text-white shadow-xl">
-          <p className="text-xs text-white/80">Year to Date</p>
-          <p className="text-[10px] text-white/60">2025</p>
-          <p className="mt-1 font-heading text-xl font-semibold">$1,200.38</p>
-          <span className="mt-2 inline-block rounded-full bg-lime px-2 py-0.5 text-[10px] font-semibold text-ink">
-            +12%
-          </span>
-        </div>
-
-        <div className="animate-float absolute right-0 bottom-8 rounded-xl bg-white p-3 shadow-xl">
-          <p className="text-sm font-semibold">Happy Students</p>
-          <p className="mb-2 text-[11px] text-muted">4.8 ★★★★★</p>
-          <AvatarStack count={5} extra="2K+" size="md" />
-        </div>
-      </div>
-
-      <div>
-        <h2 className="text-3xl leading-tight font-semibold md:text-[2.75rem]">
+      <div className="order-1 lg:order-2">
+        <h2 className="text-3xl leading-[1.2] font-semibold text-ink md:text-[44px]">
           Create &amp; Manage
           <br />
           Courses Easily.
         </h2>
-        <p className="mt-6 max-w-md text-sm leading-relaxed text-muted md:text-base">
-          <strong className="font-semibold text-ink">ByteSpace</strong> supports individuals or
-          entities in the creation, publication, and administration of educational courses.
+        <p className="mt-10 max-w-[574px] text-base leading-[1.6] text-body md:text-lg">
+          <strong className="font-bold text-ink">ByteSpace</strong> supports individuals or entities
+          in the creation, publication, and administration of educational courses.
         </p>
-        <ul className="mt-8 flex flex-col gap-4">
+        <ul className="mt-10 flex flex-col gap-[18px]">
           {creatorBenefits.map((benefit) => (
-            <li key={benefit} className="flex items-center gap-3 text-sm font-medium">
-              <CheckCircle2 className="h-5 w-5 fill-brand text-white" aria-hidden="true" />
+            <li
+              key={benefit}
+              className="flex items-center gap-2 text-lg leading-[1.2] font-medium text-ink"
+            >
+              <CircleCheck className="h-6 w-6 fill-brand text-white" aria-hidden="true" />
               {benefit}
             </li>
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   );
 }

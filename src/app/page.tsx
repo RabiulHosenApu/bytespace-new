@@ -19,11 +19,11 @@ export default function Home() {
         <Companies />
         <Courses />
         <Categories />
-        <div className="relative isolate overflow-hidden">
+        <section className="relative isolate flex flex-col gap-[72px] overflow-hidden px-4 py-20 lg:py-[120px]">
           <GlowBackdrop />
           <Growth />
           <CreateCourses />
-        </div>
+        </section>
         <CreatorCTA />
         <Testimonials />
       </main>

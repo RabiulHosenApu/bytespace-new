@@ -1,56 +1,62 @@
 import Image from "next/image";
 import CourseCard from "@/components/ui/CourseCard";
-import { Squiggle } from "@/components/ui/Shapes";
+import { ProgressCard } from "@/components/ui/InfoCards";
+import { Ornament, Place, Stage } from "@/components/ui/Stage";
 import { courses, stats } from "@/lib/data";
+
+// Figma "Frame 11" (621 x 552)
+const ART = { width: 621, height: 552 };
 
 export default function Growth() {
   return (
-    <section className="relative mx-auto grid max-w-6xl items-center gap-16 px-4 py-24 lg:grid-cols-2">
+    <div className="mx-auto grid w-full max-w-[1258px] items-center gap-12 lg:grid-cols-[574px_1fr] lg:gap-[63px]">
       <div>
-        <h2 className="text-3xl leading-tight font-semibold md:text-[2.75rem]">
+        <h2 className="text-3xl leading-[1.2] font-semibold text-ink md:text-[44px]">
           Your Path to Professional Growth Starts Here!
         </h2>
-        <p className="mt-6 max-w-md text-sm leading-relaxed text-muted md:text-base">
+        <p className="mt-10 max-w-[477px] text-base leading-[1.6] text-body md:text-lg">
           Explore our curated selection of courses tailored to enhance your capabilities and
           accelerate your career journey. Whether you are looking to sharpen specific skills, gain
           industry expertise, or embark on a new career path entirely, we have the resources you
           need.
         </p>
-        <dl className="mt-10 flex gap-12">
+        <dl className="mt-10 flex gap-10">
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse">
-              <dt className="mt-1 text-sm text-muted">{s.label}</dt>
-              <dd className="font-heading text-3xl font-semibold text-brand">{s.value}</dd>
+              <dt className="text-base leading-[1.6] text-body md:text-lg">{s.label}</dt>
+              <dd className="font-heading text-3xl leading-[1.2] font-medium text-brand md:text-4xl">
+                {s.value}
+              </dd>
             </div>
           ))}
         </dl>
       </div>
 
-      <div className="relative mx-auto h-[420px] w-full max-w-md sm:h-[460px]">
-        <div className="absolute top-0 left-0 w-52 sm:w-60">
-          <CourseCard course={courses[0]} compact />
-        </div>
-
-        <div className="absolute right-4 bottom-0 h-[340px] w-60 overflow-hidden rounded-[2rem] shadow-2xl sm:h-[380px] sm:w-72">
+      <Stage size={ART} className="relative mx-auto w-full max-w-[621px]">
+        <Place stage={ART} x={0} y={0}>
+          <CourseCard course={courses[0]} className="w-[23.3125em]" />
+        </Place>
+        {/* Export includes the drop shadow around the 577x540 photo */}
+        <Place stage={ART} x={-21} y={9} w={721} h={688}>
           <Image
-            src="/images/hero-student.jpg"
-            alt="Student learning online"
+            src="/images/growth-student.webp"
+            alt="Student learning online with a laptop"
             fill
-            sizes="288px"
-            className="object-cover"
+            sizes="(min-width: 1024px) 721px, 100vw"
+            className="object-contain"
           />
-        </div>
-
-        <Squiggle className="absolute top-6 -right-2 w-24 rotate-12" />
-
-        <div className="animate-float absolute right-0 bottom-24 w-40 rounded-xl bg-white p-3 shadow-xl sm:-right-6">
-          <p className="text-[11px] font-medium">Learning Progress</p>
-          <p className="mt-1 font-heading text-3xl font-semibold">55%</p>
-          <div className="mt-2 h-1.5 rounded-full bg-gray-100">
-            <div className="h-full w-[55%] rounded-full bg-lime" />
-          </div>
-        </div>
-      </div>
-    </section>
+        </Place>
+        <Place stage={ART} x={345} y={213} className="animate-float">
+          <ProgressCard />
+        </Place>
+        <Ornament
+          stage={ART}
+          src="/images/shapes/growth-squiggle-lime.webp"
+          x={406}
+          y={67}
+          size={215}
+        />
+      </Stage>
+    </div>
   );
 }

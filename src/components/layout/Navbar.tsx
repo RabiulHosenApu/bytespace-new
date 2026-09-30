@@ -23,19 +23,18 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
         overlay ? "absolute inset-x-0 top-0 text-white" : "relative bg-brand text-white"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
+      <nav className="mx-auto flex h-[104px] max-w-[1200px] items-center justify-between px-4 md:h-[120px] xl:px-0">
         <Logo tone="light" />
 
-        <ul className="hidden items-center gap-1 rounded-full border border-white/25 bg-white/5 p-1 text-sm backdrop-blur-sm md:flex">
+        <ul className="hidden items-center gap-6 text-surface md:flex">
           {primaryNav.map((link) => {
             const active = link.href === pathname;
             return (
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className={`block rounded-full px-4 py-1.5 transition-colors ${
-                    active ? "bg-white/15 font-medium" : "text-white/80 hover:text-lime"
-                  }`}
+                  aria-current={active ? "page" : undefined}
+                  className={`transition-colors hover:text-lime ${active ? "font-medium" : ""}`}
                 >
                   {link.label}
                 </Link>
@@ -44,7 +43,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
           })}
         </ul>
 
-        <div className="hidden items-center gap-6 text-sm md:flex">
+        <div className="hidden items-center gap-6 text-surface md:flex">
           <Link href="/login" className="hover:text-lime">
             Sign In
           </Link>
@@ -52,7 +51,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
             Join Us
           </Link>
           <button aria-label="Cart" className="hover:text-lime">
-            <ShoppingBag className="h-5 w-5" />
+            <ShoppingBag className="h-6 w-6" strokeWidth={1.5} />
           </button>
         </div>
 
@@ -69,19 +68,21 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
       {open && (
         <div className="mx-4 rounded-2xl bg-white p-4 text-ink shadow-xl md:hidden">
           <ul className="flex flex-col">
-            {[...primaryNav, { label: "Sign In", href: "/login" }, { label: "Join Us", href: "/signup" }].map(
-              (link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-lg px-3 py-2.5 font-medium hover:bg-gray-50"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ),
-            )}
+            {[
+              ...primaryNav,
+              { label: "Sign In", href: "/login" },
+              { label: "Join Us", href: "/signup" },
+            ].map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-3 py-2.5 font-medium hover:bg-gray-50"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}

@@ -14,10 +14,7 @@ export default function NewsletterForm() {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="mt-6 flex items-center gap-2 rounded-full border border-gray-200 bg-white p-1 pl-5 focus-within:border-brand"
-      >
+      <form onSubmit={handleSubmit} className="mt-11 flex max-w-[504px] items-center gap-6">
         <label htmlFor="newsletter-email" className="sr-only">
           Email address
         </label>
@@ -26,9 +23,11 @@ export default function NewsletterForm() {
           type="email"
           required
           placeholder="Enter your email"
-          className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted"
+          className="h-[52px] min-w-0 flex-1 rounded-full border border-line bg-white px-6 text-base text-ink outline-none placeholder:text-ink focus:border-brand"
         />
-        <Button type="submit">Subscribe</Button>
+        <Button type="submit" className="h-[52px]">
+          Subscribe
+        </Button>
       </form>
       {subscribed && (
         <p role="status" className="mt-3 text-sm font-medium text-brand">
