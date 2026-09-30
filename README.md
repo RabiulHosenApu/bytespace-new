@@ -32,7 +32,7 @@ src/
 │   ├── layout.tsx            # fonts (Poppins + Inter), metadata
 │   ├── page.tsx              # landing page, built from the section components
 │   ├── globals.css           # Tailwind theme tokens (brand, lime, ink…) and utilities
-│   └── (auth)/               # route group: shared split-screen layout
+│   └── (auth)/               # route group: shared blue layout with form card
 │       ├── login/page.tsx
 │       └── signup/page.tsx
 ├── components/
