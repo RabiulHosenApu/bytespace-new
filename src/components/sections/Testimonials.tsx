@@ -1,13 +1,20 @@
 import Image from "next/image";
-import GlowBackdrop from "@/components/ui/GlowBackdrop";
+import GlowBackdrop, { type Glow } from "@/components/ui/GlowBackdrop";
 import { testimonials } from "@/lib/data";
+
+// Figma "Testimonials_Frame" background ellipses
+const glows: Glow[] = [
+  { x: 842, y: -241, size: 1137, color: "lime", opacity: 0.4 },
+  { x: 395, y: -138, size: 672, color: "lime", opacity: 0.6 },
+  { x: -442, y: 149, size: 1137, color: "blue", opacity: 0.24 },
+];
 
 export default function Testimonials() {
   return (
-    <section className="relative isolate w-full overflow-hidden px-4 py-[74px]">
-      <GlowBackdrop />
+    <section className="relative isolate w-full overflow-hidden px-4 pt-[74px] pb-[57px]">
+      <GlowBackdrop glows={glows} />
 
-      <div className="mx-auto grid max-w-[1204px] items-end gap-8 md:grid-cols-2 lg:grid-cols-[577px_580px] lg:justify-between">
+      <div className="mx-auto grid max-w-[1204px] items-end gap-8 md:grid-cols-2 xl:grid-cols-[577px_580px] xl:justify-between">
         <h2 className="text-3xl leading-[1.2] font-semibold text-black md:text-[44px]">
           Discover What Our
           <br />
@@ -33,7 +40,7 @@ export default function Testimonials() {
                   height={80}
                   className="h-20 w-20 rounded-full object-cover"
                 />
-                <p className="mt-6 font-heading text-xl leading-[1.2] font-semibold text-black">
+                <p className="mt-6 font-heading text-xl leading-[28px] font-semibold text-black">
                   {t.name}
                 </p>
                 <p className="text-lg leading-[1.6] text-brand">{t.role}</p>

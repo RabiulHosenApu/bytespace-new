@@ -6,10 +6,10 @@ import { footerLinks, legalLinks } from "@/lib/data";
 export default function Footer() {
   return (
     <footer className="w-full border-t border-line bg-white px-4 pt-[70px] pb-12 text-ink">
-      <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[528px_1fr] lg:gap-[92px]">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-12 lg:grid-cols-[528px_1fr] lg:gap-[92px]">
         <div>
           <Logo />
-          <p className="mt-4 text-sm leading-[1.6]">
+          <p className="mt-[21px] text-sm leading-[1.6]">
             Stay Up to date with our latest features and releases by joining our newsletter.
           </p>
           <NewsletterForm />
@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-[130px] flex max-w-[1200px] flex-col items-center justify-between gap-4 border-t border-line pt-6 text-xs leading-[1.6] md:flex-row">
+      <div className="mx-auto mt-[128px] flex max-w-[1200px] flex-col items-center justify-between gap-4 border-t border-line pt-6 text-xs leading-[1.6] md:flex-row">
         <p>© {new Date().getFullYear()} ByteSpace. All rights reserved.</p>
         <ul className="flex gap-6">
           {legalLinks.map((link) => (

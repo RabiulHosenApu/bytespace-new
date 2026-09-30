@@ -16,6 +16,9 @@ type Copy = {
   switchText: string;
   switchLink: string;
   switchHref: string;
+  switchColor: string;
+  /** Extra space under the switch line (the Figma cards differ slightly). */
+  switchSpacing: string;
 };
 
 const copy: Record<Mode, Copy> = {
@@ -27,6 +30,8 @@ const copy: Record<Mode, Copy> = {
     switchText: "New user?",
     switchLink: "Create an account",
     switchHref: "/signup",
+    switchColor: "text-[#888888]",
+    switchSpacing: "",
   },
   signup: {
     eyebrow: "Create an Account",
@@ -36,6 +41,8 @@ const copy: Record<Mode, Copy> = {
     switchText: "Already have an account?",
     switchLink: "Login",
     switchHref: "/login",
+    switchColor: "text-body",
+    switchSpacing: "mb-[11px]",
   },
 };
 
@@ -103,7 +110,9 @@ export default function AuthForm({ mode }: { mode: Mode }) {
         </div>
       )}
 
-      <p className="mt-auto pt-12 text-center text-base leading-[1.6] text-[#888888]">
+      <p
+        className={`mt-auto pt-12 text-center text-base leading-[1.6] ${text.switchColor} ${text.switchSpacing}`}
+      >
         {text.switchText}{" "}
         <Link href={text.switchHref} className="text-brand hover:underline">
           {text.switchLink}

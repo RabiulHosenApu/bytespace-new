@@ -16,7 +16,7 @@ export default function CourseCard({ course, starTone = "grey", className = "" }
 
   return (
     <article
-      className={`group rounded-[1.5em] border border-line bg-white p-[1em] text-ink transition-shadow hover:shadow-[0_1em_2.5em_rgb(4_8_25/0.1)] ${className}`}
+      className={`group rounded-[1.5em] border border-line bg-white p-[1em] pb-[1.15625em] text-ink transition-shadow hover:shadow-[0_1em_2.5em_rgb(4_8_25/0.1)] ${className}`}
     >
       <div className="relative h-[12.1875em] overflow-hidden rounded-[0.75em] bg-[#443131]">
         <Image
@@ -26,7 +26,7 @@ export default function CourseCard({ course, starTone = "grey", className = "" }
           sizes="(min-width: 1024px) 341px, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <ul className="absolute inset-x-[0.75em] bottom-[0.8125em] flex gap-[0.75em]">
+        <ul className="absolute inset-x-[0.75em] bottom-[0.8125em] flex flex-wrap gap-x-[0.75em] gap-y-[0.375em]">
           {badges.map((b) => (
             <li
               key={b}
@@ -48,7 +48,7 @@ export default function CourseCard({ course, starTone = "grey", className = "" }
           </p>
         </div>
         <span className="flex shrink-0 items-center gap-[0.125em] text-[#4f4f4f]">
-          <span className="text-[1.125em] leading-[1.6]">{course.rating}</span>
+          <span className="text-[1.125em] leading-[1.6] font-medium">{course.rating}</span>
           <Star
             className={`h-[1.25em] w-[1.25em] ${
               starTone === "lime" ? "fill-lime text-lime" : "fill-line text-line"
@@ -59,7 +59,7 @@ export default function CourseCard({ course, starTone = "grey", className = "" }
       </div>
 
       <div className="mt-[1em] flex items-center gap-[0.75em]">
-        <span className="flex h-[2em] items-center gap-[0.25em] rounded-full bg-surface px-[0.75em] text-body">
+        <span className="flex h-[2em] items-center gap-[0.375em] rounded-full bg-surface px-[0.75em] text-body">
           <ChartNoAxesColumnIncreasing className="h-[1em] w-[1em]" aria-hidden="true" />
           <span className="text-[0.75em] font-medium">{course.level}</span>
         </span>

@@ -7,21 +7,30 @@ import { avatars } from "@/lib/data";
  * All sizes are in em (1em = 16 design px) so they scale inside a Stage.
  */
 
-const card = "rounded-[1em] p-[1em] shadow-[0_1em_2.5em_rgb(4_8_25/0.12)]";
+// Figma cards use a background blur only (no drop shadow)
+const card = "rounded-[1em] p-[1em] backdrop-blur-[20px]";
 
 export function TopicCard() {
   return (
-    <div className={`${card} flex w-[13em] flex-col gap-[0.5em] bg-white text-ink`}>
+    <div className={`${card} flex w-[13em] flex-col bg-white text-ink`}>
       <p className="text-[1em] leading-[1.2] font-medium">UI/UX Design</p>
-      <p className="text-[0.75em] leading-[1.6] text-muted">200 Courses • 1000+ Students</p>
+      <p className="flex items-center gap-[0.5em] text-muted">
+        <span className="text-[0.75em] leading-[1.6]">200 Courses</span>
+        <span className="text-[0.625em]">•</span>
+        <span className="text-[0.75em] leading-[1.6]">1000+ Students</span>
+      </p>
     </div>
   );
 }
 
-export function ProgressCard() {
+type ProgressCardProps = { roomy?: boolean };
+
+export function ProgressCard({ roomy = false }: ProgressCardProps) {
   return (
     <div className={`${card} flex w-[14.5em] flex-col gap-[0.5em] bg-white text-ink`}>
-      <p className="text-[0.875em] leading-[1.2] font-medium">Learning Progress</p>
+      <p className={`text-[0.875em] font-medium ${roomy ? "leading-[1.714]" : "leading-[1.2]"}`}>
+        Learning Progress
+      </p>
       <p className="font-heading text-[3em] leading-[1.2] font-semibold">55%</p>
       <div className="h-[0.5em] rounded-full bg-surface">
         <div className="h-full w-[55%] rounded-full bg-lime" />
@@ -30,18 +39,26 @@ export function ProgressCard() {
   );
 }
 
-type HappyStudentsCardProps = { tone?: "white" | "lime" };
+type HappyStudentsCardProps = {
+  tone?: "white" | "lime";
+  /** The hero card uses tighter 19px lines and a 12px rating; the others use 24px / 10px. */
+  compact?: boolean;
+};
 
-export function HappyStudentsCard({ tone = "white" }: HappyStudentsCardProps) {
+export function HappyStudentsCard({ tone = "white", compact = false }: HappyStudentsCardProps) {
   const lime = tone === "lime";
   return (
     <div
       className={`${card} flex w-[16.125em] flex-col gap-[0.5em] text-ink ${lime ? "bg-lime" : "bg-white"}`}
     >
       <div>
-        <p className="text-[1em] leading-[1.5] font-medium">Happy Students</p>
+        <p className={`text-[1em] font-medium ${compact ? "leading-[1.2]" : "leading-[1.5]"}`}>
+          Happy Students
+        </p>
         <p className="flex items-center gap-[0.25em]">
-          <span className="text-[0.75em] leading-[1.6] text-muted">
+          <span
+            className={`text-muted ${compact ? "text-[0.75em] leading-[1.6]" : "text-[0.625em] leading-[1.5]"}`}
+          >
             <span className="text-ink">4.5</span> (240)
           </span>
           <Star

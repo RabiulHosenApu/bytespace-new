@@ -20,7 +20,7 @@ export default function CreatorCTA() {
     <section className="relative isolate w-full overflow-hidden bg-brand bg-grid px-4 py-20 md:py-[85px]">
       <Stage
         size={FRAME}
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden md:block"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden xl:block"
       >
         {ornaments.map((o) => (
           <Ornament key={o.src} stage={FRAME} {...o} src={`/images/shapes/${o.src}.webp`} />

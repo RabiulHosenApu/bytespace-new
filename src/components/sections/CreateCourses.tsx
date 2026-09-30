@@ -11,7 +11,7 @@ export default function CreateCourses() {
   return (
     <div
       id="creators"
-      className="mx-auto grid w-full max-w-[1200px] scroll-mt-8 items-center gap-12 lg:grid-cols-[541px_1fr] lg:gap-[79px]"
+      className="mx-auto grid w-full max-w-[1200px] scroll-mt-8 grid-cols-1 items-center gap-12 lg:grid-cols-[541px_1fr] lg:gap-[79px]"
     >
       <Stage size={ART} className="relative order-2 mx-auto w-full max-w-[541px] lg:order-1">
         <Place stage={ART} x={0} y={44} w={232}>
@@ -57,7 +57,7 @@ export default function CreateCourses() {
           <strong className="font-bold text-ink">ByteSpace</strong> supports individuals or entities
           in the creation, publication, and administration of educational courses.
         </p>
-        <ul className="mt-10 flex flex-col gap-[18px]">
+        <ul className="mt-[45px] flex flex-col gap-4">
           {creatorBenefits.map((benefit) => (
             <li
               key={benefit}

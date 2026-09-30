@@ -17,18 +17,15 @@ type AuthShellProps = {
 export default function AuthShell({ heading, text, children }: AuthShellProps) {
   return (
     <div className="relative flex min-h-screen flex-1 overflow-hidden bg-brand bg-grid text-surface">
-      <div className="mx-auto grid w-full max-w-[1200px] content-start gap-10 px-4 pt-[35px] pb-12 lg:grid-cols-[548px_579px] lg:justify-between xl:px-0">
-        <div>
+      <div className="mx-auto grid w-full max-w-[1200px] content-start gap-10 px-4 pt-[35px] pb-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,579px)] lg:gap-16 xl:grid-cols-[548px_579px] xl:justify-between xl:gap-0 xl:px-0">
+        <div className="relative">
           <Logo tone="light" markOnly />
           <div className="mt-12 max-w-[475px]">
             <h2 className="text-xl leading-[1.2] font-semibold">{heading}</h2>
             <p className="mt-4 text-base leading-[1.6] md:text-lg">{text}</p>
           </div>
 
-          <Stage
-            size={ART}
-            className="relative mt-[87px] -ml-[25px] hidden w-full max-w-[548px] lg:block"
-          >
+          <Stage size={ART} className="absolute top-[270px] left-[-25px] hidden w-[548px] xl:block">
             <Place stage={ART} x={25} y={89}>
               <CourseCard course={courses[1]} starTone="lime" className="w-[23.3125em]" />
             </Place>

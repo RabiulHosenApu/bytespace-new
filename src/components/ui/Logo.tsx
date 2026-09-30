@@ -25,7 +25,7 @@ export default function Logo({ tone = "dark", markOnly = false }: LogoProps) {
     >
       <svg
         viewBox={markOnly ? "0 0 30 35" : "0 0 171 35"}
-        className="h-8 w-auto"
+        className="h-[35px] w-auto"
         aria-hidden="true"
       >
         {MARK.map((d) => (

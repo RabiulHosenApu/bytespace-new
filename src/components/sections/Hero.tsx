@@ -22,7 +22,7 @@ export default function Hero() {
     <section className="relative isolate w-full overflow-hidden bg-brand bg-grid text-surface">
       <Stage
         size={FRAME}
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden md:block"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 hidden xl:block"
       >
         {ornaments.map((o) => (
           <Ornament key={o.src} stage={FRAME} {...o} src={`/images/shapes/${o.src}.webp`} />
@@ -30,7 +30,7 @@ export default function Hero() {
       </Stage>
 
       <div className="mx-auto flex max-w-[1200px] flex-col items-center px-4 pt-32 text-center md:pt-[169px]">
-        <h1 className="max-w-[935px] text-[40px] leading-[1.2] font-semibold tracking-[-0.01em] sm:text-6xl md:text-[72px]">
+        <h1 className="max-w-[935px] text-white text-[40px] leading-[1.2] font-semibold tracking-[-0.01em] sm:text-6xl md:text-[72px]">
           Get Access to Hundreds Courses Available
         </h1>
         <p className="mt-8 max-w-[935px] text-base leading-[1.6] text-[#e5e6e8] md:text-lg">
@@ -84,7 +84,7 @@ export default function Hero() {
           <Place stage={ART} x={259} y={127} className="animate-float max-sm:hidden">
             <TopicCard />
           </Place>
-          <Place stage={ART} x={697} y={139} className="animate-float [animation-delay:1.5s]">
+          <Place stage={ART} x={697} y={139} className="animate-float [animation-delay:1.5s] max-sm:-ml-[6%]">
             <ProgressCard />
           </Place>
           <Place
@@ -93,7 +93,7 @@ export default function Hero() {
             y={325}
             className="animate-float [animation-delay:3s] max-sm:hidden"
           >
-            <HappyStudentsCard />
+            <HappyStudentsCard compact />
           </Place>
         </Stage>
       </div>

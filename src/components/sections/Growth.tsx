@@ -9,7 +9,7 @@ const ART = { width: 621, height: 552 };
 
 export default function Growth() {
   return (
-    <div className="mx-auto grid w-full max-w-[1258px] items-center gap-12 lg:grid-cols-[574px_1fr] lg:gap-[63px]">
+    <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-12 lg:grid-cols-[574px_1fr] lg:gap-[63px] lg:pl-px">
       <div>
         <h2 className="text-3xl leading-[1.2] font-semibold text-ink md:text-[44px]">
           Your Path to Professional Growth Starts Here!
@@ -20,11 +20,11 @@ export default function Growth() {
           industry expertise, or embark on a new career path entirely, we have the resources you
           need.
         </p>
-        <dl className="mt-10 flex gap-10">
+        <dl className="mt-10 flex gap-14">
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse">
-              <dt className="text-base leading-[1.6] text-body md:text-lg">{s.label}</dt>
-              <dd className="font-heading text-3xl leading-[1.2] font-medium text-brand md:text-4xl">
+              <dt className="text-base leading-[29px] text-body md:text-lg">{s.label}</dt>
+              <dd className="font-heading text-3xl leading-[44px] font-medium text-brand md:text-4xl">
                 {s.value}
               </dd>
             </div>
@@ -32,7 +32,10 @@ export default function Growth() {
         </dl>
       </div>
 
-      <Stage size={ART} className="relative mx-auto w-full max-w-[621px]">
+      <Stage
+        size={ART}
+        className="relative mx-auto w-full max-w-[621px] lg:mx-0 xl:w-[621px] xl:max-w-none"
+      >
         <Place stage={ART} x={0} y={0}>
           <CourseCard course={courses[0]} className="w-[23.3125em]" />
         </Place>
@@ -47,7 +50,7 @@ export default function Growth() {
           />
         </Place>
         <Place stage={ART} x={345} y={213} className="animate-float">
-          <ProgressCard />
+          <ProgressCard roomy />
         </Place>
         <Ornament
           stage={ART}

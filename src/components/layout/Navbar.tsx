@@ -23,10 +23,10 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
         overlay ? "absolute inset-x-0 top-0 text-white" : "relative bg-brand text-white"
       }`}
     >
-      <nav className="mx-auto flex h-[104px] max-w-[1200px] items-center justify-between px-4 md:h-[120px] xl:px-0">
+      <nav className="relative mx-auto flex h-[104px] max-w-[1200px] items-center justify-between px-4 md:h-[120px] xl:px-0">
         <Logo tone="light" />
 
-        <ul className="hidden items-center gap-6 text-surface md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 text-surface md:flex">
           {primaryNav.map((link) => {
             const active = link.href === pathname;
             return (

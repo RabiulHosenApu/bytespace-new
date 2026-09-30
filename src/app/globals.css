@@ -35,6 +35,14 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
+}
+
+/* Figma sets -1% letter spacing on all Poppins text */
+h1,
+h2,
+h3,
+h4,
+.font-heading {
   letter-spacing: -0.01em;
 }
 

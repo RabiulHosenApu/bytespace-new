@@ -46,7 +46,7 @@ export default function Courses() {
             {r === TAG_ROWS.length - 1 && (
               <Link
                 href="/#categories"
-                className="self-center px-2 text-sm font-medium text-brand hover:underline md:text-base"
+                className="self-center text-sm font-medium text-brand hover:underline md:text-base"
               >
                 + More
               </Link>
@@ -55,7 +55,7 @@ export default function Courses() {
         ))}
       </div>
 
-      <div className="mx-auto mt-[77px] grid max-w-[1199px] gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-[77px] grid max-w-[1199px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((course) => (
           <CourseCard key={course.id} course={course} />
         ))}

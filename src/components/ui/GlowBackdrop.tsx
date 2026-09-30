@@ -1,10 +1,39 @@
-/** Soft lime / blue radial glows used behind the light #fafafa sections. */
-export default function GlowBackdrop() {
+/*
+ * Soft radial glows behind the light #fafafa sections, recreated from the
+ * Figma ellipses (radial gradient, stops 100% / 23% / 6% / 0%, layer blur).
+ * x is relative to the 1440px frame; y and size are in px from the section top.
+ */
+
+export type Glow = {
+  x: number;
+  y: number;
+  size: number;
+  color: "lime" | "blue";
+  opacity: number;
+};
+
+const rgb = { lime: "203 252 1", blue: "0 59 226" };
+
+export default function GlowBackdrop({ glows }: { glows: Glow[] }) {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-canvas">
-      <div className="absolute top-[-10%] left-[-10%] h-[70%] max-h-[1137px] w-[80%] max-w-[1137px] rounded-full bg-[radial-gradient(closest-side,rgb(212_251_32/0.35),transparent)]" />
-      <div className="absolute top-[20%] right-[-25%] h-[70%] max-h-[1137px] w-[80%] max-w-[1137px] rounded-full bg-[radial-gradient(closest-side,rgb(0_59_226/0.12),transparent)]" />
-      <div className="absolute bottom-[-10%] left-[-20%] h-[60%] max-h-[1137px] w-[70%] max-w-[1137px] rounded-full bg-[radial-gradient(closest-side,rgb(212_251_32/0.3),transparent)]" />
+      {glows.map((g, i) => {
+        const c = rgb[g.color];
+        const a = (stop: number) => `rgb(${c} / ${(g.opacity * stop).toFixed(3)})`;
+        return (
+          <div
+            key={i}
+            className="absolute rounded-full blur-[20px]"
+            style={{
+              left: `${(g.x / 1440) * 100}%`,
+              top: g.y,
+              width: g.size,
+              height: g.size,
+              background: `radial-gradient(closest-side, ${a(1)} 0%, ${a(0.23)} 53%, ${a(0.06)} 75%, transparent 100%)`,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }

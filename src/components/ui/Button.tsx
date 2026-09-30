@@ -10,7 +10,7 @@ const variants: Record<Variant, string> = {
 };
 
 const base =
-  "inline-flex h-[46px] shrink-0 items-center justify-center gap-2 rounded-full px-6 text-lg font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60";
+  "inline-flex h-[46px] shrink-0 items-center justify-center gap-2 rounded-full px-6 text-lg leading-[22px] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-60";
 
 type ButtonProps = ComponentProps<"button"> & { variant?: Variant };
 
