@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ByteSpace
 
-## Getting Started
+A responsive landing page for **ByteSpace**, an online course platform, built from the
+"ByteSpace New" Figma design. It also has Login and Signup pages (the bonus task).
 
-First, run the development server:
+**Live demo:** https://bytespace-new-two-iota.vercel.app
+
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · lucide-react
+
+**Fonts:** Poppins (headings) and Satoshi (body), the same as the Figma style guide. Satoshi is self-hosted via `next/font/local`.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route     | Description                                                        |
+| --------- | ------------------------------------------------------------------ |
+| `/`       | Full landing page                                                  |
+| `/login`  | Sign-in form (client-side validation, password visibility toggle)  |
+| `/signup` | Registration form (password match check, terms agreement)          |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── layout.tsx            # fonts (Poppins + Satoshi), metadata
+│   ├── page.tsx              # landing page, built from the section components
+│   ├── globals.css           # Tailwind theme tokens (brand, lime, ink…) and utilities
+│   └── (auth)/               # route group: login and signup pages
+│       ├── login/page.tsx
+│       └── signup/page.tsx
+├── components/
+│   ├── layout/               # Navbar (with mobile menu), Footer, NewsletterForm
+│   ├── sections/             # Hero, Companies, Courses, Categories, Growth,
+│   │                         # CreateCourses, CreatorCTA, Testimonials
+│   ├── auth/                 # AuthShell (blue layout + illustration) and AuthForm
+│   └── ui/                   # reusable parts: Stage/Place/Ornament, CourseCard, InfoCards,
+│                             # AvatarStack, Button, SectionHeading, Logo, GlowBackdrop
+└── lib/data.ts               # all page content (courses, tags, testimonials, links)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Built from the Figma file.** Colours, font sizes, spacing and copy come from the
+  Figma frames and style guide. The photos, 3D ornaments, partner logos, category icons and
+  the logo were exported from the same file (`public/images`).
+- **Scalable illustrations.** Each illustration (hero, growth, creator, auth) is laid out in the
+  Figma frame's own coordinates inside a `Stage` (`ui/Stage.tsx`). The stage keeps the frame's
+  aspect ratio and sizes its contents in `%`/`em`, so the composition matches the design at
+  1440px and scales down proportionally on smaller screens.
+- **Content lives in data.** All copy and lists are in `src/lib/data.ts`, so the section
+  components stay presentational.
+- **Interactive course filter.** Clicking a category tag filters the course grid.
+- **Auth.** The Login and Signup pages are front-end only. No backend is connected.
+- **Deliberate differences from the Figma:**
+  - The footer newsletter button reads "Subscribe" rather than "Search".
+  - The "Year to Date" badge shows "+12%" rather than "+12$".
+  - The copyright year is the current year.
