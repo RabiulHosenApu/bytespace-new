@@ -3,6 +3,8 @@
 A responsive landing page for **ByteSpace**, an online course platform, built from the
 "ByteSpace New" Figma design. It also has Login and Signup pages (the bonus task).
 
+**Live demo:** https://bytespace-new-two-iota.vercel.app
+
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · lucide-react
 
 ## Getting started
