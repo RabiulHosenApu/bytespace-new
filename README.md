@@ -7,6 +7,8 @@ A responsive landing page for **ByteSpace**, an online course platform, built fr
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · lucide-react
 
+**Fonts:** Poppins (headings) and Satoshi (body), the same as the Figma style guide. Satoshi is self-hosted via `next/font/local`.
+
 ## Getting started
 
 ```bash
@@ -29,32 +31,36 @@ npm run lint
 ```
 src/
 ├── app/
-│   ├── layout.tsx            # fonts (Poppins + Inter), metadata
+│   ├── layout.tsx            # fonts (Poppins + Satoshi), metadata
 │   ├── page.tsx              # landing page, built from the section components
 │   ├── globals.css           # Tailwind theme tokens (brand, lime, ink…) and utilities
-│   └── (auth)/               # route group: shared blue layout with form card
+│   └── (auth)/               # route group: login and signup pages
 │       ├── login/page.tsx
 │       └── signup/page.tsx
 ├── components/
 │   ├── layout/               # Navbar (with mobile menu), Footer, NewsletterForm
 │   ├── sections/             # Hero, Companies, Courses, Categories, Growth,
 │   │                         # CreateCourses, CreatorCTA, Testimonials
-│   ├── auth/AuthForm.tsx     # one form component for both login and signup
-│   └── ui/                   # reusable parts: Button/ButtonLink, CourseCard,
-│                             # AvatarStack, SectionHeading, Logo, Shapes, GlowBackdrop
+│   ├── auth/                 # AuthShell (blue layout + illustration) and AuthForm
+│   └── ui/                   # reusable parts: Stage/Place/Ornament, CourseCard, InfoCards,
+│                             # AvatarStack, Button, SectionHeading, Logo, GlowBackdrop
 └── lib/data.ts               # all page content (courses, tags, testimonials, links)
 ```
 
 ## Notes
 
+- **Built from the Figma file.** Colours, font sizes, spacing and copy come from the
+  Figma frames and style guide. The photos, 3D ornaments, partner logos, category icons and
+  the logo were exported from the same file (`public/images`).
+- **Scalable illustrations.** Each illustration (hero, growth, creator, auth) is laid out in the
+  Figma frame's own coordinates inside a `Stage` (`ui/Stage.tsx`). The stage keeps the frame's
+  aspect ratio and sizes its contents in `%`/`em`, so the composition matches the design at
+  1440px and scales down proportionally on smaller screens.
 - **Content lives in data.** All copy and lists are in `src/lib/data.ts`, so the section
   components stay presentational.
-- **Interactive course filter.** Clicking a category tag filters the course grid, and
-  `+ More` shows the remaining tags.
-- **Decorative 3D shapes.** The squiggles, rings, cones and cylinders are hand-built SVG
-  components (`ui/Shapes.tsx`) instead of exported bitmaps, so they stay sharp at any size.
-- **Images.** Photos are free Unsplash / randomuser.me images stored in `public/images`,
-  used in place of the Figma's cut-out renders.
+- **Interactive course filter.** Clicking a category tag filters the course grid.
 - **Auth.** The Login and Signup pages are front-end only. No backend is connected.
-- **Newsletter button.** In the Figma file the footer newsletter button says "Search". It is
-  labelled "Subscribe" here because that matches what it does.
+- **Deliberate differences from the Figma:**
+  - The footer newsletter button reads "Subscribe" rather than "Search".
+  - The "Year to Date" badge shows "+12%" rather than "+12$".
+  - The copyright year is the current year.
