@@ -1,21 +1,34 @@
+import { ButtonLink } from "@/components/ui/Button";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { Cone, Cylinder, Ring, Squiggle } from "@/components/ui/Shapes";
+
 export default function CreatorCTA() {
   return (
-    <section className="relative w-full bg-[#0f4cff] text-white py-24 px-4 overflow-hidden text-center">
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff1a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff1a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-      
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">Unlock Your Potential as a<br/>Creator with ByteSpace</h2>
-        <p className="text-white/80 mb-10 max-w-3xl text-sm md:text-base">
-          Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library.
-        </p>
-        <button className="bg-[#ccff00] text-black font-semibold px-8 py-3 rounded-full hover:bg-[#b3e600] transition">
+    <section className="relative w-full overflow-hidden bg-brand bg-grid px-4 py-24 text-white">
+      <Squiggle className="absolute -top-4 -left-6 hidden w-36 rotate-12 md:block" />
+      <Squiggle color="white" className="absolute top-8 left-[14%] hidden w-16 -rotate-12 lg:block" />
+      <Cone className="absolute top-1/2 -left-4 hidden w-20 -rotate-12 md:block" />
+      <Ring color="lime" className="absolute -bottom-10 left-[6%] hidden w-32 md:block" />
+      <Cone color="lime" className="absolute top-6 right-[16%] hidden w-20 rotate-[30deg] lg:block" />
+      <Cylinder color="white" className="absolute top-10 -right-6 hidden w-28 -rotate-12 md:block" />
+      <Squiggle className="absolute right-[8%] -bottom-6 hidden w-28 -rotate-6 md:block" />
+
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center">
+        <SectionHeading
+          tone="light"
+          title={
+            <>
+              Unlock Your Potential as a
+              <br />
+              Creator with ByteSpace
+            </>
+          }
+          description="Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your finest course on the ByteSpace Course Library."
+        />
+        <ButtonLink href="/signup" className="mt-8">
           Join as Creator
-        </button>
+        </ButtonLink>
       </div>
-      
-      {/* Abstract Shapes Placeholder */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-[#ccff00] rounded-full blur-2xl opacity-50 z-0"></div>
     </section>
   );
 }

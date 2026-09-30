@@ -1,32 +1,44 @@
-import { PenTool, Code, Monitor, Briefcase, TrendingUp, Camera } from "lucide-react";
+import Link from "next/link";
+import { Building2, Camera, Code2, Laptop, Megaphone, PenTool, type LucideIcon } from "lucide-react";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { categories } from "@/lib/data";
+
+const icons: Record<(typeof categories)[number]["icon"], LucideIcon> = {
+  pen: PenTool,
+  code: Code2,
+  laptop: Laptop,
+  building: Building2,
+  megaphone: Megaphone,
+  camera: Camera,
+};
 
 export default function Categories() {
-  const categories = [
-    { name: "Design", icon: <PenTool className="w-8 h-8 text-black" /> },
-    { name: "Development", icon: <Code className="w-8 h-8 text-black" /> },
-    { name: "IT & Software", icon: <Monitor className="w-8 h-8 text-black" /> },
-    { name: "Business", icon: <Briefcase className="w-8 h-8 text-black" /> },
-    { name: "Marketing", icon: <TrendingUp className="w-8 h-8 text-black" /> },
-    { name: "Photography", icon: <Camera className="w-8 h-8 text-black" /> },
-  ];
-
   return (
-    <section className="w-full bg-white py-20 px-4 text-black text-center">
-      <div className="max-w-4xl mx-auto mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Explore Diverse Learning Paths at Bytespace</h2>
-        <p className="text-gray-500">At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories.</p>
-      </div>
-      
-      <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-6">
-        {categories.map((cat, i) => (
-          <div key={i} className="flex flex-col items-center justify-center bg-white border border-gray-100 rounded-2xl w-40 h-40 shadow-sm hover:shadow-md transition cursor-pointer">
-            <div className="w-16 h-16 rounded-full bg-[#ccff00] flex items-center justify-center mb-4">
-              {cat.icon}
-            </div>
-            <span className="font-medium text-gray-800">{cat.name}</span>
-          </div>
-        ))}
-      </div>
+    <section id="categories" className="w-full scroll-mt-8 bg-white px-4 pb-24">
+      <SectionHeading
+        title="Explore Diverse Learning Paths at Bytespace"
+        description="At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories."
+        size="md"
+      />
+
+      <ul className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {categories.map(({ name, icon }) => {
+          const Icon = icons[icon];
+          return (
+            <li key={name}>
+              <Link
+                href="/#courses"
+                className="flex aspect-[5/4] flex-col items-center justify-center gap-3 rounded-2xl border border-gray-200 bg-white text-sm font-medium transition hover:-translate-y-1 hover:border-lime hover:shadow-md"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-lime">
+                  <Icon className="h-5 w-5 text-ink" aria-hidden="true" />
+                </span>
+                {name}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
