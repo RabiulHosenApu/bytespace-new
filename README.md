@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ByteSpace
 
-## Getting Started
+A responsive landing page for **ByteSpace**, an online course platform, built from the
+"ByteSpace New" Figma design. It also has Login and Signup pages (the bonus task).
 
-First, run the development server:
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · lucide-react
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route     | Description                                                        |
+| --------- | ------------------------------------------------------------------ |
+| `/`       | Full landing page                                                  |
+| `/login`  | Sign-in form (client-side validation, password visibility toggle)  |
+| `/signup` | Registration form (password match check, terms agreement)          |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── layout.tsx            # fonts (Poppins + Inter), metadata
+│   ├── page.tsx              # landing page, built from the section components
+│   ├── globals.css           # Tailwind theme tokens (brand, lime, ink…) and utilities
+│   └── (auth)/               # route group: shared split-screen layout
+│       ├── login/page.tsx
+│       └── signup/page.tsx
+├── components/
+│   ├── layout/               # Navbar (with mobile menu), Footer, NewsletterForm
+│   ├── sections/             # Hero, Companies, Courses, Categories, Growth,
+│   │                         # CreateCourses, CreatorCTA, Testimonials
+│   ├── auth/AuthForm.tsx     # one form component for both login and signup
+│   └── ui/                   # reusable parts: Button/ButtonLink, CourseCard,
+│                             # AvatarStack, SectionHeading, Logo, Shapes, GlowBackdrop
+└── lib/data.ts               # all page content (courses, tags, testimonials, links)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Content lives in data.** All copy and lists are in `src/lib/data.ts`, so the section
+  components stay presentational.
+- **Interactive course filter.** Clicking a category tag filters the course grid, and
+  `+ More` shows the remaining tags.
+- **Decorative 3D shapes.** The squiggles, rings, cones and cylinders are hand-built SVG
+  components (`ui/Shapes.tsx`) instead of exported bitmaps, so they stay sharp at any size.
+- **Images.** Photos are free Unsplash / randomuser.me images stored in `public/images`,
+  used in place of the Figma's cut-out renders.
+- **Auth.** The Login and Signup pages are front-end only. No backend is connected.
+- **Newsletter button.** In the Figma file the footer newsletter button says "Search". It is
+  labelled "Subscribe" here because that matches what it does.
