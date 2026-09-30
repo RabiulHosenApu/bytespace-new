@@ -13,7 +13,7 @@ export default function CourseCard({ course, compact = false }: CourseCardProps)
   const badges = [`${course.lessons} Lessons`, course.duration, `${course.comments} Comments`];
 
   return (
-    <article className="group rounded-2xl border border-gray-100 bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+    <article className="group rounded-2xl border border-gray-100 bg-white p-3 text-ink shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
       <div className={`relative overflow-hidden rounded-xl ${compact ? "h-28" : "h-44"}`}>
         <Image
           src={course.image}

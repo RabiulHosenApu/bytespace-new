@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -9,13 +9,13 @@ type Mode = "login" | "signup";
 
 const copy: Record<Mode, { title: string; subtitle: string; submit: string; success: string }> = {
   login: {
-    title: "Welcome back",
+    title: "Welcome back to ByteSpace",
     subtitle: "Sign in to continue your learning journey.",
     submit: "Sign In",
     success: "Signed in successfully (demo — no backend connected).",
   },
   signup: {
-    title: "Create your account",
+    title: "Welcome to ByteSpace",
     subtitle: "Join 12K+ students and creators on ByteSpace.",
     submit: "Create Account",
     success: "Account created (demo — no backend connected).",
@@ -46,24 +46,10 @@ export default function AuthForm({ mode }: { mode: Mode }) {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold">{text.title}</h1>
+      <h1 className="text-2xl font-semibold md:text-3xl">{text.title}</h1>
       <p className="mt-2 text-sm text-muted">{text.subtitle}</p>
 
-      <button
-        type="button"
-        className="mt-8 flex w-full items-center justify-center gap-3 rounded-full border border-gray-200 py-2.5 text-sm font-medium transition-colors hover:bg-gray-50"
-      >
-        <GoogleIcon />
-        Continue with Google
-      </button>
-
-      <div className="my-6 flex items-center gap-3 text-xs text-muted">
-        <span className="h-px flex-1 bg-gray-200" />
-        or continue with email
-        <span className="h-px flex-1 bg-gray-200" />
-      </div>
-
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
         {mode === "signup" && (
           <Field label="Full name" name="name" autoComplete="name" placeholder="Jane Doe" />
         )}
@@ -121,10 +107,24 @@ export default function AuthForm({ mode }: { mode: Mode }) {
           </p>
         )}
 
-        <Button type="submit" variant="brand" className="mt-2 w-full py-3">
+        <Button type="submit" className="mt-2 w-full py-3">
           {text.submit}
         </Button>
       </form>
+
+      <div className="my-6 flex items-center gap-3 text-xs text-muted">
+        <span className="h-px flex-1 bg-gray-200" />
+        or continue with
+        <span className="h-px flex-1 bg-gray-200" />
+      </div>
+      <div className="flex justify-center gap-3">
+        <SocialButton label="Continue with Google">
+          <GoogleIcon />
+        </SocialButton>
+        <SocialButton label="Continue with Apple">
+          <AppleIcon />
+        </SocialButton>
+      </div>
 
       <p className="mt-6 text-center text-sm text-muted">
         {mode === "login" ? "Don't have an account? " : "Already have an account? "}
@@ -184,6 +184,26 @@ function PasswordField({ label, name, autoComplete }: Omit<FieldProps, "type">) 
         </button>
       </span>
     </label>
+  );
+}
+
+function SocialButton({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 transition-colors hover:bg-gray-50"
+    >
+      {children}
+    </button>
+  );
+}
+
+function AppleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-ink" aria-hidden="true">
+      <path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9a4.8 4.8 0 0 0-3.8-2c-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9a5 5 0 0 0-4.2 2.6c-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8 2.2-1.3 3.1-2.5c1-1.4 1.4-2.8 1.4-2.9-.1 0-2.6-1-2.6-4.1ZM13.9 5c.7-.9 1.2-2 1-3.2-1 0-2.2.7-3 1.5-.6.8-1.2 2-1 3.1 1.1.1 2.3-.6 3-1.4Z" />
+    </svg>
   );
 }
 
